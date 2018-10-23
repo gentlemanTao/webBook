@@ -1,5 +1,8 @@
 package org.smart4j.framework.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +15,7 @@ import java.util.Properties;
  **/
 public final class PropsUtil {
 
-//    private static final Logger log= LoggerFactory.getLogger (PropsUtil.class);
+    private static final Logger log= LoggerFactory.getLogger (PropsUtil.class);
 
     /**
      * 加载属性文件
@@ -40,7 +43,7 @@ public final class PropsUtil {
                     is.close ();
                 }catch (IOException e) {
                     e.printStackTrace ();
-     //               log.error ("close input stream failure", e);
+                    log.error ("close input stream failure", e);
                 }
             }
         }
