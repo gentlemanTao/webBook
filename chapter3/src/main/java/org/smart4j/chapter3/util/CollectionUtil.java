@@ -1,6 +1,5 @@
-package org.smart4j.framework.util;
+package org.smart4j.chapter3.util;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 
 import java.util.Collection;
@@ -19,7 +18,7 @@ public class CollectionUtil {
      * @return
      */
     public static boolean isEmpty(Collection<?> collection){
-        return CollectionUtils.isEmpty (collection);
+        return CollectionUtil.isEmpty (collection);
     }
 
     /**

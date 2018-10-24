@@ -1,5 +1,7 @@
 package org.smart4j.framework.helper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.smart4j.framework.util.ReflectionUtil;
 
 import java.util.Map;
@@ -11,7 +13,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * @Date: 2018/10/24 0:24
  * @Description:Bean助手类
  **/
-public class BeanHelper {
+public final class BeanHelper {
+    private static final Logger log= LoggerFactory.getLogger (BeanHelper.class);
     /**
      * 定义Bean映射（用于存放Bean类与Bean实例的映射关系）
      */
@@ -23,6 +26,7 @@ public class BeanHelper {
             Object obj= ReflectionUtil.newInstance (cls);
             BEAN_MAP.put (cls,obj);
         }
+        log.info (String.valueOf (BEAN_MAP));
     }
 
     /**

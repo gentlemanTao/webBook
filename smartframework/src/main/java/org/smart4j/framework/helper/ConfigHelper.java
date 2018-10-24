@@ -10,7 +10,7 @@ import java.util.Properties;
  * @Date: 2018/10/19 23:22
  * @Description:属性文件助手类
  **/
-public class ConfigHelper {
+public final class ConfigHelper {
     //获取配置文件
     private static Properties CONFIG_PROPS= PropsUtil.loadProps (ConfigConstant.CONFIG_FILE);
 

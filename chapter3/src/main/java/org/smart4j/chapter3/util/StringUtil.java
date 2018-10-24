@@ -1,4 +1,4 @@
-package org.smart4j.framework.util;
+package org.smart4j.chapter3.util;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -26,9 +26,5 @@ public class StringUtil {
      */
     public static boolean isNotEmpty(String  str){
         return  !StringUtils.isEmpty (str);
-    }
-
-    public static String[] spiltString(String body, String s) {
-        return StringUtils.split (body,s);
     }
 }

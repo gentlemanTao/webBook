@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.util.Enumeration;
@@ -110,12 +109,14 @@ public final class ClassUtil {
      * @param packageName
      */
     private static void addClass(Set<Class<?>> classSet, String packagePath, String packageName) {
-            File[] files=new File(packagePath).listFiles (new FileFilter () {
-                @Override
-                public boolean accept(File file) {
-                    return (file.isFile ()&&file.getName ().endsWith (".class"))||file.isDirectory ();
-                }
-            });
+        //使用lambda表达式
+        File[] files=new File(packagePath).listFiles (file -> (file.isFile ()&&file.getName ().endsWith (".class"))||file.isDirectory ());
+//        File[] files=new File(packagePath).listFiles (new FileFilter () {
+//            @Override
+//            public boolean accept(File file) {
+//                return (file.isFile ()&&file.getName ().endsWith (".class"))||file.isDirectory ();
+//            }
+//        });
         for (File file:files) {
             String fileName=file.getName ();
             if(file.isFile ()){

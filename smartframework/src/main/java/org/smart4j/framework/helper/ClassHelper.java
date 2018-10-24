@@ -1,5 +1,7 @@
 package org.smart4j.framework.helper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.smart4j.framework.annotation.Controller;
 import org.smart4j.framework.annotation.Service;
 import org.smart4j.framework.util.ClassUtil;
@@ -14,14 +16,17 @@ import java.util.Set;
  **/
 public final class ClassHelper {
 
+    private static final Logger log= LoggerFactory.getLogger (ClassHelper.class);
     /**
      * 定义类集合（用于存放所加载的类）
      */
     private static final Set<Class<?>> CLASS_SET;
 
     static {
+
         String basePackage=ConfigHelper.getAppBasePackage ();
         CLASS_SET= ClassUtil.getClassSet (basePackage);
+        log.info (String.valueOf (CLASS_SET.size ()));
     }
 
     /**
@@ -57,6 +62,7 @@ public final class ClassHelper {
                 classSet.add (cls);
             }
         }
+        log.info (String.valueOf (classSet.size ()));
         return classSet;
     }
 
