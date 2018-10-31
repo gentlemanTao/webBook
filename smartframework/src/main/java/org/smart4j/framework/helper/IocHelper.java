@@ -22,6 +22,11 @@ public final class IocHelper {
     private static final Logger log= LoggerFactory.getLogger (IocHelper.class);
 
 
+    /**
+     * 获取所有的bean，
+     * 将bean的每一个成员变量进行遍历以看是否有注解
+     * 将成员变量注解所对应的Bean实例注入到Bean中
+     */
     static {
         //获取所有的Bean类与Bean实例之间的映射关系
         Map<Class<?>,Object> beanMap=BeanHelper.getBeanMap ();

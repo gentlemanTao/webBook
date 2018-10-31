@@ -22,9 +22,7 @@ public final class  HelperLoader {
                 IocHelper.class,
                 ControllerHelper.class
         };
-        log.info (String.valueOf (classList.length));
         for (Class<?> cls:classList) {
-            log.info (cls.getName ());
             ClassUtil.loadClass (cls.getName (),true);
         }
     }

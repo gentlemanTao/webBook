@@ -39,9 +39,7 @@ public class DispatcherServlet extends HttpServlet{
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         //初始化相关Helper类
-        log.info ("初始化HelperLoader开始");
         HelperLoader.init ();
-        log.info ("初始化HelperLoader结束");
         //获取ServletContext对象（用于注册Servlet）
         ServletContext servletContext=servletConfig.getServletContext ();
         //注册处理JSP的servlet
@@ -53,29 +51,45 @@ public class DispatcherServlet extends HttpServlet{
         defaultServlet.addMapping (ConfigHelper.getAppAssetPath ()+"*");
     }
 
+    /**
+     * 处理逻辑：
+     * 1：首先从请求流中获取请求方法和请求路径
+     * 2：根据请求方法和请求路径获取Action层处理器
+     * 3：从请求流中获取请求请求参数进行封装
+     * 4：执行相应的action层方法1
+     * 5：获取方法执行结果
+     * 6：根据返回结果决定是跳转界面还是返回参数
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String requestMthod=request.getMethod ().toLowerCase ();
+        //获取请求方法与请求路径
+        String requestMethod=request.getMethod ().toLowerCase ();
         String requestPath=request.getPathInfo ();
-
-
-
-        Handler handler= ControllerHelper.getHandler (requestMthod,requestPath);
+        //获取Action处理器
+        Handler handler= ControllerHelper.getHandler (requestMethod,requestPath);
         if (handler!=null){
+            //获取Controller类及实例
             Class<?> controllerClass=handler.getControllerClass ();
             Object controller= BeanHelper.getBean (controllerClass);
-
+            //用来存放参数对象
             Map<String,Object> paramMap=new ConcurrentHashMap<> ();
+            //创建参数对象名称的map
             Enumeration<String> paramNames=request.getParameterNames ();
-            log.info (String.valueOf (paramMap));
+
+            //循环遍历参数名称，从请求流中获取参数值放入参数对象中
             while (paramNames.hasMoreElements ()){
                 String paramName=paramNames.nextElement ();
                 String paramValue=request.getParameter (paramName);
                 paramMap.put (paramName,paramValue);
             }
-
+            //进行编码
             String body= CodeUtil.decodeURL (StreamUtil.getString (request.getInputStream ()));
+
             if (StringUtil.isNotEmpty (body)){
                 String[] params=StringUtil.spiltString(body,"&");
                 if (ArrayUtil.isNotEmpty (params)){
@@ -96,6 +110,7 @@ public class DispatcherServlet extends HttpServlet{
             Object result= ReflectionUtil.invokeMethod (controller,actionMethod,param);
 
             if (result instanceof View){
+                //跳转界面
                 View view=(View)result;
                 String path=view.getPath ();
                 if (path.startsWith ("/")){
@@ -108,6 +123,7 @@ public class DispatcherServlet extends HttpServlet{
                     request.getRequestDispatcher (ConfigHelper.getAppJspPath ()+path).forward (request,response);
                 }
             }else if (result instanceof Data){
+                //返回json数据
                 Data data=(Data) result;
                 Object model=data.getModel ();
                 if (model!=null){

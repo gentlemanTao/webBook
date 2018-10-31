@@ -27,7 +27,7 @@ public final class ControllerHelper {
     static {
         //获取Controller类集合
         Set<Class<?>> controllerSet=ClassHelper.getControllerClassSet ();
-        log.info (String.valueOf (controllerSet.size ()));
+//        log.info (String.valueOf (controllerSet.size ()));
         if (CollectionUtil.isNotEmpty (controllerSet)){
             //循环遍历controllerClass集合
             for (Class<?> controllerClass:controllerSet) {
@@ -41,14 +41,13 @@ public final class ControllerHelper {
                             Action action=method.getAnnotation (Action.class);
                             //获取Action的value
                             String mapping=action.value ();
-                            log.info (mapping);
                             if (mapping.matches ("\\w+:/\\w*")){
                                 String[] arrays=mapping.split (":");
                                 if (ArrayUtil.isNotEmpty (arrays)&&arrays.length==2){
                                     //获取请求方法与路径
                                     String requestMethod=arrays[0];
                                     String requestPath=arrays[1];
-                                    log.info (mapping);
+//                                    log.info (mapping);
                                     Request request=new Request (requestMethod,requestPath);
                                     Handler handler=new Handler (controllerClass,method);
                                     ACTION_MAP.put (request,handler);
@@ -59,7 +58,7 @@ public final class ControllerHelper {
                 }
             }
         }
-        log.info (String.valueOf (ACTION_MAP));
+//        log.info (String.valueOf (ACTION_MAP));
     }
 
     /**

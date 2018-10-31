@@ -208,18 +208,18 @@ public class DatabaseHelper {
             log.error ("can not update entity:fieldMap is Empty");
             return false;
         }
-        String sql="UPDATE "+getTableName(entityClass)+" SET";
+        String sql="UPDATE Customer SET  ";
         //字段sql
         StringBuilder columns=new StringBuilder ();
         for (String fieldName:fieldMap.keySet ()) {
             columns.append (fieldName).append ("=?,");
         }
         //将最后一个“，”截掉
-        sql=sql+columns.substring (0,columns.lastIndexOf (","))+"WHERE id=?";
+        sql=sql+columns.substring (0,columns.lastIndexOf (","))+" WHERE id=?";
         List<Object> paramList=new ArrayList<> ();
         paramList.addAll (fieldMap.values ());
         paramList.add (id);
-        Object params=paramList.toArray ();
+        Object[] params=paramList.toArray ();
         return executeUpdate (sql,params)==1;
     }
 
@@ -232,7 +232,7 @@ public class DatabaseHelper {
      */
     public static <T> boolean deleteEntity(Class<T> entityClass,long id){
 
-        String sql="DELETE "+getTableName(entityClass)+" WHERE id=?";
+        String sql="DELETE FROM "+getTableName(entityClass)+" WHERE id=?";
         return executeUpdate (sql,id)==1;
     }
 
