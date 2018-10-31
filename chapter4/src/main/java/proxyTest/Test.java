@@ -1,7 +1,5 @@
 package proxyTest;
 
-import java.lang.reflect.Proxy;
-
 /**
  * @Author: Gentleman
  * @Date: 2018/11/1 0:24
@@ -14,10 +12,7 @@ public class Test {
 //        helloProxy.say ("Jack");
 
 
-        Hello hello=new HelloImpl ();
-        DynamicProxy dynamicProxy=new DynamicProxy (hello);
-        //创建代理
-        Hello helloProxy= (Hello) Proxy.newProxyInstance (hello.getClass ().getClassLoader (),hello.getClass ().getInterfaces (),dynamicProxy);
-        helloProxy.say ("Jack");
+        Hello helloProxy=DynamicProxy.getObjectProxy (new HelloImpl ());
+        helloProxy.say ("Jack1");
     }
 }

@@ -2,6 +2,7 @@ package proxyTest;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 /**
  * @Author: Gentleman
@@ -24,6 +25,14 @@ public class DynamicProxy implements InvocationHandler{
         return result;
     }
 
+    /**
+     * 生成代理对象
+     * @param <T>
+     * @return
+     */
+    private <T> T creterProxy(){
+        return (T) Proxy.newProxyInstance (target.getClass ().getClassLoader (),target.getClass ().getInterfaces (),this);
+    }
     private void before(){
         System.out.println ("DynamicProxy Before");
     };
@@ -31,4 +40,10 @@ public class DynamicProxy implements InvocationHandler{
     private void after(){
         System.out.println ("DynamicProxy After");
     };
+
+    //返回被代理后的对象
+    public  static <T> T getObjectProxy(Object object){
+        DynamicProxy dynamicProxy=new DynamicProxy (object);
+        return dynamicProxy.creterProxy ();
+    }
 }
