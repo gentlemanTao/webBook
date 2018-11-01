@@ -8,11 +8,23 @@ package proxyTest;
 public class Test {
 
     public static void main(String[] args) {
-//        Hello helloProxy=new HelloProxy ();
-//        helloProxy.say ("Jack");
+        Hello helloProxy=new HelloProxy ();
+        helloProxy.say ("Jack");
+        System.out.println ();
 
+        Hello HelloImplProxy=DynamicProxy.getObjectProxy (new HelloImpl ());
+        HelloImplProxy.say ("Jack1");
+        System.out.println ();
 
-        Hello helloProxy=DynamicProxy.getObjectProxy (new HelloImpl ());
-        helloProxy.say ("Jack1");
+        HelloImpl helloCGLibProxy=CGLibProxy.getObjectProxy (HelloImpl.class);
+        helloCGLibProxy.say ("Jack1");
+        System.out.println ();
+
+        HelloImplTest HelloImplTestCGLibProxy=CGLibProxy.getObjectProxy (HelloImplTest.class);
+        HelloImplTestCGLibProxy.say ("Jack1");
+        HelloImplTestCGLibProxy.yesSay ("test");
+        System.out.println ();
+        helloCGLibProxy.say ("Jack1");
+        helloCGLibProxy.noSay ("test");
     }
 }
