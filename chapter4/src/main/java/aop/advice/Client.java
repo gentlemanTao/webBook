@@ -10,9 +10,18 @@ import org.springframework.aop.framework.ProxyFactory;
  **/
 public class Client {
     public static void main(String[] args) {
+        //Aop增强器可增加多个，按照添加顺序依次进行增强
+        //输出结果：
+        //前置增强实现类：before
+        //Hello jack
+        //后置增强：After
+        //后置增强Test：After
+        //后置增强：After
         ProxyFactory proxyFactory=new ProxyFactory ();
         proxyFactory.setTarget (new GreetingImpl ());
         proxyFactory.addAdvice (new GreetingBeforeAdvice ());
+        proxyFactory.addAdvice (new GreetingAfterAdvice ());
+        proxyFactory.addAdvice (new GreetingAfterTestAdvice ());
         proxyFactory.addAdvice (new GreetingAfterAdvice ());
         GreetingImpl greeting= (GreetingImpl) proxyFactory.getProxy ();
         greeting.sayHello ("jack");
