@@ -17,12 +17,22 @@ public class Client {
         //后置增强：After
         //后置增强Test：After
         //后置增强：After
+//        ProxyFactory proxyFactory=new ProxyFactory ();
+//        proxyFactory.setTarget (new GreetingImpl ());
+//        proxyFactory.addAdvice (new GreetingBeforeAdvice ());
+//        proxyFactory.addAdvice (new GreetingAfterAdvice ());
+//        proxyFactory.addAdvice (new GreetingAfterTestAdvice ());
+//        proxyFactory.addAdvice (new GreetingAfterAdvice ());
+//        GreetingImpl greeting= (GreetingImpl) proxyFactory.getProxy ();
+//        greeting.sayHello ("jack");
+
+        //Aop增强器：环绕增强
+        //环绕增强：前置增强实现类：before
+        //Hello jack
+        //环绕增强：后置增强实现类：before
         ProxyFactory proxyFactory=new ProxyFactory ();
         proxyFactory.setTarget (new GreetingImpl ());
-        proxyFactory.addAdvice (new GreetingBeforeAdvice ());
-        proxyFactory.addAdvice (new GreetingAfterAdvice ());
-        proxyFactory.addAdvice (new GreetingAfterTestAdvice ());
-        proxyFactory.addAdvice (new GreetingAfterAdvice ());
+        proxyFactory.addAdvice (new GreetingBeforeAndAfterAdvice());
         GreetingImpl greeting= (GreetingImpl) proxyFactory.getProxy ();
         greeting.sayHello ("jack");
     }
