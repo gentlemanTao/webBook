@@ -8,6 +8,7 @@
     <artifactId>chapter4</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
+
     <dependencies>
         <dependency>
             <groupId>org.smart4j</groupId>
