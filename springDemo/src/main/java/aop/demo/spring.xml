@@ -17,11 +17,18 @@
             <list>
                 <!--增强器名称-->
                 <value>greetingAroundAdvice</value>
+                <value>greetingThrowAdvice</value>
             </list>
 
             <!--只有一个增强类可以这么写 <property name="interceptorNames" valuse="greetAroundAdvice" /> -->
         </property>
-
     </bean>
 
+    <!--配置AOP代理：引入增强-->
+    <bean id="greetingIntroductionProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interfaces" value="aop.demo.Apology" /><!--需要代理的接口-->
+        <property name="target" ref="greetingImpl"/><!--接口的实现类-->
+        <property name="interceptorNames" value="greetingIntroAdivce"  /><!--引入增强-->
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
 </beans>
