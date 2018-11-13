@@ -29,7 +29,7 @@ public final class IocHelper {
      */
     static {
         //获取所有的Bean类与Bean实例之间的映射关系
-        Map<Class<?>,Object> beanMap=BeanHelper.getBeanMap ();
+        Map<Class<?>,Object> beanMap= BeanHelper.getBeanMap ();
         if (CollectionUtil.isNotEmpty (beanMap)){
             //遍历BeanMap
             for (Map.Entry<Class<?>,Object> beanEntry:beanMap.entrySet ()) {

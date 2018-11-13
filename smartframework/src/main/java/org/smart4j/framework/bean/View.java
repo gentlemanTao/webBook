@@ -23,7 +23,7 @@ public class View {
         model=new ConcurrentHashMap<> ();
     }
 
-    public View addModel(String key,Object value){
+    public View addModel(String key, Object value){
         model.put (key,value);
         return this;
     }

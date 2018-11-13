@@ -26,7 +26,7 @@ public final class ControllerHelper {
 
     static {
         //获取Controller类集合
-        Set<Class<?>> controllerSet=ClassHelper.getControllerClassSet ();
+        Set<Class<?>> controllerSet= ClassHelper.getControllerClassSet ();
 //        log.info (String.valueOf (controllerSet.size ()));
         if (CollectionUtil.isNotEmpty (controllerSet)){
             //循环遍历controllerClass集合
@@ -67,8 +67,7 @@ public final class ControllerHelper {
      * @param requestPath
      * @return
      */
-    public static Handler getHandler (String requestMethod,String requestPath){
-        log.info (String.valueOf (ACTION_MAP));
+    public static Handler getHandler (String requestMethod, String requestPath){
         Request request=new Request (requestMethod,requestPath);
         return ACTION_MAP.get (request);
     }

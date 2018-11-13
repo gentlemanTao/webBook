@@ -19,48 +19,48 @@ public final class ConfigHelper {
      * @return
      */
     public static String getJdbcDriver(){
-        return PropsUtil.getString (CONFIG_PROPS,ConfigConstant.JDBC_DRIVER);
+        return PropsUtil.getString (CONFIG_PROPS, ConfigConstant.JDBC_DRIVER);
     }
     /**
      * 获取JDBC url
      * @return
      */
     public static String getJdbcUrl(){
-        return PropsUtil.getString (CONFIG_PROPS,ConfigConstant.JDBC_DRIVER);
+        return PropsUtil.getString (CONFIG_PROPS, ConfigConstant.JDBC_DRIVER);
     }
     /**
      * 获取JDBC 用户名
      * @return
      */
     public static String getJdbcUserName(){
-        return PropsUtil.getString (CONFIG_PROPS,ConfigConstant.JDBC_DRIVER);
+        return PropsUtil.getString (CONFIG_PROPS, ConfigConstant.JDBC_DRIVER);
     }
     /**
      * 获取JDBC 密码
      * @return
      */
     public static String getJdbcPassword(){
-        return PropsUtil.getString (CONFIG_PROPS,ConfigConstant.JDBC_DRIVER);
+        return PropsUtil.getString (CONFIG_PROPS, ConfigConstant.JDBC_DRIVER);
     }
     /**
      * 获取应用基础包名
      * @return
      */
     public static String getAppBasePackage(){
-        return PropsUtil.getString (CONFIG_PROPS,ConfigConstant.JDBC_DRIVER);
+        return PropsUtil.getString (CONFIG_PROPS, ConfigConstant.JDBC_DRIVER);
     }
     /**
      * 获取应用jsp路径
      * @return
      */
     public static String getAppJspPath(){
-        return PropsUtil.getString (CONFIG_PROPS,ConfigConstant.JDBC_DRIVER,"/WEB-INF/view/");
+        return PropsUtil.getString (CONFIG_PROPS, ConfigConstant.JDBC_DRIVER,"/WEB-INF/view/");
     }
     /**
      * 获取应用静态资源路径
      * @return
      */
     public static String getAppAssetPath(){
-        return PropsUtil.getString (CONFIG_PROPS,ConfigConstant.JDBC_DRIVER,"/asset/");
+        return PropsUtil.getString (CONFIG_PROPS, ConfigConstant.JDBC_DRIVER,"/asset/");
     }
 }

@@ -91,10 +91,10 @@ public class DispatcherServlet extends HttpServlet{
             String body= CodeUtil.decodeURL (StreamUtil.getString (request.getInputStream ()));
 
             if (StringUtil.isNotEmpty (body)){
-                String[] params=StringUtil.spiltString(body,"&");
+                String[] params= StringUtil.spiltString(body,"&");
                 if (ArrayUtil.isNotEmpty (params)){
                     for (String param:params) {
-                        String[] array=StringUtil.spiltString (param,"=");
+                        String[] array= StringUtil.spiltString (param,"=");
                         if (ArrayUtil.isNotEmpty (array)&&array.length==2){
                             String paramName=array[0];
                             String paramValue=array[1];
@@ -130,7 +130,7 @@ public class DispatcherServlet extends HttpServlet{
                     response.setContentType ("application/json");
                     response.setContentType ("UTF-8");
                     PrintWriter writer=response.getWriter ();
-                    String json=JsonUtil.toJson (model);
+                    String json= JsonUtil.toJson (model);
                     writer.write (json);
                     writer.flush ();
                     writer.close ();

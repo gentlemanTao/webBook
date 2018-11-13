@@ -21,12 +21,11 @@ public final class BeanHelper {
     private static final Map<Class<?>,Object> BEAN_MAP=new ConcurrentHashMap<> ();
 
     static {
-        Set<Class<?>> beanClassSet=ClassHelper.getBeanClassSet ();
+        Set<Class<?>> beanClassSet= ClassHelper.getBeanClassSet ();
         for (Class<?> cls:beanClassSet) {
             Object obj= ReflectionUtil.newInstance (cls);
             BEAN_MAP.put (cls,obj);
         }
-        log.info (String.valueOf (BEAN_MAP));
     }
 
     /**
@@ -50,4 +49,12 @@ public final class BeanHelper {
         return (T)BEAN_MAP.get (cls);
     }
 
+    /**
+     * 设置Bean实例
+     * @param cls
+     * @param object
+     */
+    public static void setBean(Class<?> cls,Object object){
+        BEAN_MAP.put (cls,object);
+    }
 }
