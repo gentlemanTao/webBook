@@ -21,15 +21,15 @@ public class ControllerAspect extends AspectProxy {
 
     @Override
     public void before(Class<?> cls, Method method, Object[] params) throws Throwable {
-        log.info ("-----------begin--------------");
-        log.info (String.format ("class: %s",cls.getName ()));
-        log.info (String.format ("method: %s",method.getName ()));
+        log.debug ("-----------begin--------------");
+        log.debug (String.format ("class: %s",cls.getName ()));
+        log.debug (String.format ("method: %s",method.getName ()));
         begin=System.currentTimeMillis ();
     }
 
     @Override
     public void after(Class<?> cls, Method method, Object[] params, Object result) throws Throwable {
-        log.info (String.format ("time: %dms",System.currentTimeMillis ()-begin));
-        log.info ("-----------end--------------");
+        log.debug (String.format ("time: %dms",System.currentTimeMillis ()-begin));
+        log.debug ("-----------end--------------");
     }
 }
