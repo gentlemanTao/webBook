@@ -10,6 +10,7 @@ import org.smart4j.framework.annotation.Inject;
 import org.smart4j.framework.bean.Data;
 import org.smart4j.framework.bean.Param;
 import org.smart4j.framework.bean.View;
+import org.smart4j.chapter3.aspect.ControllerAspect;
 
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ public class CustomerServlet {
     @Action("get:/customer")
     public View index(Param param) {
         List<Customer> customerList = customerService.getCustomerList();
+        ControllerAspect ControllerAspect=new ControllerAspect();
         return new View("customer.jsp").addModel("customerList", customerList);
     }
 
